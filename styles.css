@@ -1,12 +1,13 @@
 * {
-  box-sizing: border-box;
+  box-sizing: border-box; /* Ensure all elements use border-box sizing */
 }
 
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: 'Lato', sans-serif; /* Set the font family */
   margin: 0;
   padding: 0;
-  color: #fff;
+  color: #fff; /* Set the default text color */
+  background: linear-gradient(to bottom, #000, #333); /* Set the background gradient */
 }
 
 .game {
@@ -15,92 +16,94 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #000;
+  background-color: #000; /* Set the game background color */
 }
 
 .table {
   width: 800px;
   height: 600px;
-  background-size: cover;
-  position: relative;
+  background-size: cover; /* Ensure the background image covers the table */
+  position: relative; /* Position relative for absolute positioning of child elements */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Add shadow to the table */
 }
 
 .hand {
-  position: absolute;
+  position: absolute; /* Absolutely position the hands */
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* Allow cards to wrap within the hand */
 }
 
 .dealer {
   top: 50px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%); /* Center the dealer's hand */
 }
 
 .player {
-  bottom: 50px;
+  bottom: 50px; /* Position the player's hand at the bottom */
 }
 
 #player1 {
-  left: 100px;
+  left: 100px; /* Position NPC player 1's hand */
 }
 
 #player2 {
-  left: 300px;
+  left: 300px; /* Position NPC player 2's hand */
 }
 
 #player {
-  left: 500px;
+  left: 500px; /* Position the main player's hand */
 }
 
 .label {
   position: absolute;
-  top: -30px;
+  top: -30px; /* Position the label above the hand */
   font-size: 1.2rem;
   font-weight: bold;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow for better readability */
 }
 
 .cards {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* Allow cards to wrap within the hand */
 }
 
 .card {
   width: 75px;
   height: 100px;
   margin: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Add shadow to the cards */
 }
 
 .card.face-down {
   width: 75px;
   height: 100px;
-  background-image: url('cards/green_back.png');
-  background-size: cover;
+  background-image: url('cards/green_back.png'); /* Set the background image for face-down cards */
+  background-size: cover; /* Ensure the background image covers the card */
 }
 
 .hand.active {
-  outline: 2px solid red;
+  outline: 2px solid red; /* Outline the active hand */
 }
 
 .message {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
+  transform: translate(-50%, -50%); /* Center the message */
+  background-color: rgba(0, 0, 0, 0.8); /* Set the message background color */
+  color: white; /* Set the message text color */
   padding: 20px;
-  border-radius: 5px;
-  font-size: 1.5rem;
-  z-index: 1;
+  border-radius: 5px; /* Add rounded corners to the message */
+  font-size: 1.5rem; /* Set the message font size */
+  z-index: 1; /* Ensure the message is above other elements */
+  text-align: center; /* Center the text within the message */
 }
 
 .message.hide {
-  display: none;
+  display: none; /* Hide the message initially */
 }
 
 .start-screen {
@@ -109,75 +112,106 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-size: cover;
-  background-position: center;
-  text-align: center;
-  color: #fff;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  background-size: cover; /* Ensure the background image covers the start screen */
+  background-position: center; /* Center the background image */
+  text-align: center; /* Center the text within the start screen */
+  color: #fff; /* Set the text color */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow for better readability */
 }
 
 .start-screen h1 {
-  font-size: 3rem;
-  margin-bottom: 20px;
+  font-size: 3rem; /* Set the font size of the heading */
+  margin-bottom: 20px; /* Add margin below the heading */
 }
 
 .input-group {
-  margin-top: 20px;
+  margin-top: 20px; /* Add margin above the input group */
 }
 
 .input-group label {
   display: block;
-  font-size: 1.5rem;
-  margin-bottom: 5px;
+  font-size: 1.5rem; /* Set the font size of the label */
+  margin-bottom: 5px; /* Add margin below the label */
 }
 
 .input-group input {
   padding: 10px;
-  font-size: 1.2rem;
-  text-align: center;
-  border-radius: 5px;
-  border: 2px solid #fff;
-  background-color: rgba(255, 255, 255, 0.2);
-  color: #fff;
+  font-size: 1.2rem; /* Set the font size of the input */
+  text-align: center; /* Center the text within the input */
+  border-radius: 5px; /* Add rounded corners to the input */
+  border: 2px solid #fff; /* Set the border color */
+  background-color: rgba(255, 255, 255, 0.2); /* Set the background color */
+  color: #fff; /* Set the text color */
 }
 
 .input-group input::placeholder {
-  color: #fff;
+  color: #fff; /* Set the placeholder text color */
 }
 
 .input-group input:focus {
-  outline: none;
-  border-color: #ffd700;
+  outline: none; /* Remove the default focus outline */
+  border-color: #ffd700; /* Change the border color on focus */
 }
 
 .action-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 1.2rem;
-  border-radius: 5px;
-  border: 2px solid #fff;
-  background-color: rgba(255, 255, 255, 0.2);
-  color: #fff;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  margin-top: 20px; /* Add margin above the button */
+  padding: 10px 20px; /* Set the padding of the button */
+  font-size: 1.2rem; /* Set the font size of the button */
+  border-radius: 50px; /* Make the button oval */
+  border: 2px solid gold; /* Set the border color */
+  background: linear-gradient(to bottom, gold, yellow); /* Set the background gradient */
+  color: #333; /* Set the text color */
+  cursor: pointer; /* Change the cursor on hover */
+  transition: background-color 0.3s ease; /* Add a transition effect for the background color */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add text shadow for a debossed effect */
 }
 
 .action-button:hover {
-  background-color: rgba(255, 255, 255, 0.4);
+  background: linear-gradient(to bottom, #ffd700, #ffb900); /* Change the background gradient on hover */
+}
+
+.action-button.disabled {
+  background: linear-gradient(to bottom, #ccc, #aaa); /* Change the background gradient when disabled */
+  cursor: not-allowed; /* Change the cursor when disabled */
 }
 
 .game.hide {
-  display: none;
+  display: none; /* Hide the game section initially */
 }
 
 .start-screen.hide {
-  display: none;
+  display: none; /* Hide the start screen section initially */
 }
 
 .red-black-text {
-  background: linear-gradient(to right, red, black);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: linear-gradient(to right, red, black); /* Set the background gradient for the text */
+  -webkit-background-clip: text; /* Clip the background to the text */
+  -webkit-text-fill-color: transparent; /* Make the text transparent */
+}
+
+.bet-controls {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px; /* Add margin below the bet controls */
+}
+
+.bet-controls label {
+  font-size: 1.2rem; /* Set the font size of the label */
+  margin-right: 10px; /* Add margin to the right of the label */
+}
+
+.bet-controls input {
+  width: 60px; /* Set the width of the input */
+  margin-right: 10px; /* Add margin to the right of the input */
+  font-size: 1.2rem; /* Set the font size of the input */
+}
+
+.money-display {
+  margin-top: 20px; /* Add margin above the money display */
+  font-size: 1.5rem; /* Set the font size of the money display */
+  background: linear-gradient(to right, gold, yellow); /* Set the background gradient */
+  -webkit-background-clip: text; /* Clip the background to the text */
+  -webkit-text-fill-color: transparent; /* Make the text transparent */
 }
 
 /* Media Queries for Responsive Design */
@@ -189,27 +223,27 @@ body {
   }
 
   .hand {
-    position: static;
-    margin-bottom: 20px;
+    position: static; /* Change the position to static for responsive design */
+    margin-bottom: 20px; /* Add margin below the hand */
   }
 
   .dealer {
-    margin-top: 20px;
+    margin-top: 20px; /* Add margin above the dealer's hand */
   }
 
   .player {
-    margin-top: 20px;
+    margin-top: 20px; /* Add margin above the player's hand */
   }
 
   .label {
-    font-size: 1rem;
-    margin-bottom: 10px;
+    font-size: 1rem; /* Set the font size of the label */
+    margin-bottom: 10px; /* Add margin below the label */
   }
 
   .cards {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* Allow cards to wrap within the hand */
   }
 
   .card {
@@ -225,15 +259,39 @@ body {
   }
 
   .action-button {
-    width: 80%;
-    margin: 10px 0;
+    width: 80%; /* Set the width of the button */
+    margin: 10px 0; /* Add margin above and below the button */
   }
 
   .input-group input {
-    width: 80%;
+    width: 80%; /* Set the width of the input */
   }
 
   .start-screen h1 {
-    font-size: 2rem;
+    font-size: 2rem; /* Set the font size of the heading */
   }
+
+  .bet-controls {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .bet-controls label {
+    margin-bottom: 5px; /* Add margin below the label */
+  }
+
+  .bet-controls input {
+    margin-bottom: 10px; /* Add margin below the input */
+  }
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8); /* Set the background color */
+  text-align: center; /* Center the text within the footer */
+  padding: 10px; /* Add padding to the footer */
+  color: #fff; /* Set the text color */
+  font-size: 0.8rem; /* Set the font size */
 }

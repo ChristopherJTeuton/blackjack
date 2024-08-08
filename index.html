@@ -1,39 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Meta tags for character set, viewport, and description for better SEO -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A fun and engaging Blackjack game.">
   <title>Blackjack</title>
+
+  <!-- Link to external CSS file -->
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Google Fonts for styling -->
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+
+  <!-- Favicon for branding -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
+  <!-- Main game section, initially hidden -->
   <div id="game" class="game hide">
+    <!-- Game table with background image -->
     <div class="table" style="background-image: url('background.jpg');">
+      <!-- Dealer's hand -->
       <div id="dealer" class="hand dealer">
         <div class="label">Dealer <span id="dealer-value"></span></div>
         <div id="dealer-cards" class="cards"></div>
       </div>
+
+      <!-- NPC player 1's hand -->
       <div id="player1" class="hand player">
         <div class="label"><span id="player1-name"></span> <span id="player1-value"></span></div>
         <div id="player1-cards" class="cards"></div>
       </div>
+
+      <!-- NPC player 2's hand -->
       <div id="player2" class="hand player">
         <div class="label"><span id="player2-name"></span> <span id="player2-value"></span></div>
         <div id="player2-cards" class="cards"></div>
       </div>
+
+      <!-- Main player's hand -->
       <div id="player" class="hand player active">
         <div class="label"><span id="player-name"></span> <span id="player-value"></span></div>
         <div id="player-cards" class="cards"></div>
       </div>
     </div>
+
+    <!-- Message display area -->
     <div id="message" class="message hide"></div>
+
+    <!-- Controls for betting and game actions -->
     <div class="controls">
+      <div class="bet-controls">
+        <label for="bet-amount">Bet Amount: </label>
+        <input type="number" id="bet-amount" min="2" max="40" step="2">
+        <button id="place-bet" class="action-button">Place Bet</button>
+      </div>
       <button id="hit" class="action-button">Hit</button>
       <button id="stand" class="action-button">Stand</button>
-      <button id="deal" class="action-button hide">Deal</button>
+      <button id="deal" class="action-button hide disabled">Deal</button>
     </div>
-</div>
+
+    <!-- Money display area -->
+    <div class="money-display">
+      <span>Money: $<span id="player-money">40</span></span>
+    </div>
+  </div>
+
+  <!-- Start screen section, initially visible -->
   <div id="start-screen" class="start-screen" style="background-image: url('intro.jpg');">
     <h1 class="red-black-text">Welcome to Blackjack!</h1>
     <div class="input-group">
@@ -42,6 +76,13 @@
     </div>
     <button id="start-game" class="action-button">Start Game</button>
   </div>
+
+  <!-- Footer for a professional touch -->
+  <footer>
+    <p>&copy; 2023 Blackjack Game. All rights reserved.</p>
+  </footer>
+
+  <!-- Link to external JavaScript file -->
   <script src="game.js"></script>
 </body>
 </html>

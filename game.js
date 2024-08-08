@@ -17,6 +17,8 @@ const players = [
 let deck = [];
 let hands = {};
 let playerName = '';
+let playerMoney = 40;
+let currentBet = 0;
 
 function createDeck() {
   deck = [];
@@ -125,11 +127,32 @@ async function stand() {
   document.getElementById('stand').disabled = true;
   document.getElementById('player').classList.remove('active');
 
+  // NPC Players' Turns
+  for (const playerId of ['player1', 'player2']) {
+    const playerHand = hands[playerId];
+    while (calculateHandValue(playerHand) < 17 && Math.random() < 0.7) {
+      dealCard(playerHand);
+      await new Promise(resolve => setTimeout(resolve, 500));
+    }
+  }
+
   const dealerHand = hands.dealer;
   const faceDownCard = document.querySelector('#dealer-cards .face-down');
   faceDownCard.src = `cards/${faceDownCard.getAttribute('data-value')}${faceDownCard.getAttribute('data-suit')}.png`;
   faceDownCard.classList.remove('face-down');
   updateHandValue(dealerHand);
+
+  const playerValue = calculateHandValue(hands.player);
+
+  // If the player busts, the dealer wins immediately
+  if (playerValue > 21) {
+    showMessage('Dealer wins!');
+    document.getElementById('deal').disabled = false;
+    document.getElementById('place-bet').disabled = false;
+    document.getElementById('bet-amount').disabled = false;
+    updateMoneyDisplay();
+    return;
+  }
 
   while (calculateHandValue(dealerHand) < 17) {
     dealCard(dealerHand);
@@ -137,24 +160,21 @@ async function stand() {
   }
 
   const dealerValue = calculateHandValue(dealerHand);
-  if (dealerValue > 21) {
-    showMessage('Dealer busts! You win!');
+
+  if (dealerValue > 21 || playerValue > dealerValue && playerValue <= 21) {
+    playerMoney += currentBet * 2;
+    showMessage('You win!');
+  } else if (dealerValue === playerValue) {
+    playerMoney += currentBet;
+    showMessage('Push!');
   } else {
-    let winners = [];
-
-    for (const hand of Object.values(hands)) {
-      if (hand.id !== 'dealer') {
-        const value = calculateHandValue(hand);
-        if (value > dealerValue && value <= 21) {
-          winners.push(hand.name);
-        }
-      }
-    }
-
-    showMessage(`${winners.length > 0 ? `${winners.join(' and ')} win${winners.length > 1 ? 's' : ''}!` : 'Dealer wins!'}`);
+    showMessage('Dealer wins!');
   }
 
   document.getElementById('deal').disabled = false;
+  document.getElementById('place-bet').disabled = false;
+  document.getElementById('bet-amount').disabled = false;
+  updateMoneyDisplay();
 }
 
 function showMessage(text) {
@@ -172,6 +192,26 @@ function startGame() {
   document.getElementById('start-screen').classList.add('hide');
   document.getElementById('game').classList.remove('hide');
   initGame();
+  updateMoneyDisplay();
+}
+
+function placeBet() {
+  const betAmount = parseInt(document.getElementById('bet-amount').value, 10);
+  if (betAmount >= 2 && betAmount <= playerMoney && betAmount % 2 === 0) {
+    currentBet = betAmount;
+    playerMoney -= currentBet;
+    updateMoneyDisplay();
+    document.getElementById('place-bet').disabled = true;
+    document.getElementById('bet-amount').disabled = true;
+    document.getElementById('deal').disabled = false;
+    document.getElementById('deal').classList.remove('disabled');
+  } else {
+    showMessage('Invalid bet amount!');
+  }
+}
+
+function updateMoneyDisplay() {
+  document.getElementById('player-money').innerText = playerMoney;
 }
 
 // Add touch event listeners
@@ -183,3 +223,5 @@ document.getElementById('deal').addEventListener('click', initGame);
 document.getElementById('deal').addEventListener('touchstart', initGame);
 document.getElementById('start-game').addEventListener('click', startGame);
 document.getElementById('start-game').addEventListener('touchstart', startGame);
+document.getElementById('place-bet').addEventListener('click', placeBet);
+document.getElementById('place-bet').addEventListener('touchstart', placeBet);
