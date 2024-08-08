@@ -174,29 +174,12 @@ function startGame() {
   initGame();
 }
 
-function addTouchListeners() {
-  const buttons = document.querySelectorAll('.action-button');
-  buttons.forEach(button => {
-    button.addEventListener('touchstart', () => {
-      button.style.backgroundColor = 'rgba(255, 255, 255, 0.4)';
-    });
-    button.addEventListener('touchend', () => {
-      button.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
-    });
-  });
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  addTouchListeners();
-
-  document.getElementById('hit').addEventListener('click', hit);
-  document.getElementById('stand').addEventListener('click', stand);
-  document.getElementById('deal').addEventListener('click', initGame);
-  document.getElementById('start-game').addEventListener('click', startGame);
-
-  // Adding touch event listeners for buttons
-  document.getElementById('hit').addEventListener('touchstart', hit);
-  document.getElementById('stand').addEventListener('touchstart', stand);
-  document.getElementById('deal').addEventListener('touchstart', initGame);
-  document.getElementById('start-game').addEventListener('touchstart', startGame);
-});
+// Add touch event listeners
+document.getElementById('hit').addEventListener('click', hit);
+document.getElementById('hit').addEventListener('touchstart', hit);
+document.getElementById('stand').addEventListener('click', stand);
+document.getElementById('stand').addEventListener('touchstart', stand);
+document.getElementById('deal').addEventListener('click', initGame);
+document.getElementById('deal').addEventListener('touchstart', initGame);
+document.getElementById('start-game').addEventListener('click', startGame);
+document.getElementById('start-game').addEventListener('touchstart', startGame);

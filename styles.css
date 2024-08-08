@@ -19,8 +19,7 @@ body {
 }
 
 .table {
-  width: 90%;
-  max-width: 800px;
+  width: 800px;
   height: 600px;
   background-size: cover;
   position: relative;
@@ -179,4 +178,62 @@ body {
   background: linear-gradient(to right, red, black);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  .table {
+    width: 100%;
+    height: auto;
+    padding-top: 50%; /* Maintain aspect ratio */
+  }
+
+  .hand {
+    position: static;
+    margin-bottom: 20px;
+  }
+
+  .dealer {
+    margin-top: 20px;
+  }
+
+  .player {
+    margin-top: 20px;
+  }
+
+  .label {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+  .cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .card {
+    width: 50px;
+    height: 70px;
+    margin: 3px;
+  }
+
+  .controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .action-button {
+    width: 80%;
+    margin: 10px 0;
+  }
+
+  .input-group input {
+    width: 80%;
+  }
+
+  .start-screen h1 {
+    font-size: 2rem;
+  }
 }
