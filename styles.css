@@ -1,0 +1,182 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #000;
+}
+
+.table {
+  width: 90%;
+  max-width: 800px;
+  height: 600px;
+  background-size: cover;
+  position: relative;
+}
+
+.hand {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.dealer {
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.player {
+  bottom: 50px;
+}
+
+#player1 {
+  left: 100px;
+}
+
+#player2 {
+  left: 300px;
+}
+
+#player {
+  left: 500px;
+}
+
+.label {
+  position: absolute;
+  top: -30px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 75px;
+  height: 100px;
+  margin: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.card.face-down {
+  width: 75px;
+  height: 100px;
+  background-image: url('cards/green_back.png');
+  background-size: cover;
+}
+
+.hand.active {
+  outline: 2px solid red;
+}
+
+.message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  z-index: 1;
+}
+
+.message.hide {
+  display: none;
+}
+
+.start-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.start-screen h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  margin-top: 20px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+.input-group input {
+  padding: 10px;
+  font-size: 1.2rem;
+  text-align: center;
+  border-radius: 5px;
+  border: 2px solid #fff;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.input-group input::placeholder {
+  color: #fff;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #ffd700;
+}
+
+.action-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  border: 2px solid #fff;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.action-button:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.game.hide {
+  display: none;
+}
+
+.start-screen.hide {
+  display: none;
+}
+
+.red-black-text {
+  background: linear-gradient(to right, red, black);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blackjack</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="game" class="game hide">
+    <div class="table" style="background-image: url('background.jpg');">
+      <div id="dealer" class="hand dealer">
+        <div class="label">Dealer <span id="dealer-value"></span></div>
+        <div id="dealer-cards" class="cards"></div>
+      </div>
+      <div id="player1" class="hand player">
+        <div class="label"><span id="player1-name"></span> <span id="player1-value"></span></div>
+        <div id="player1-cards" class="cards"></div>
+      </div>
+      <div id="player2" class="hand player">
+        <div class="label"><span id="player2-name"></span> <span id="player2-value"></span></div>
+        <div id="player2-cards" class="cards"></div>
+      </div>
+      <div id="player" class="hand player active">
+        <div class="label"><span id="player-name"></span> <span id="player-value"></span></div>
+        <div id="player-cards" class="cards"></div>
+      </div>
+    </div>
+    <div id="message" class="message hide"></div>
+    <div class="controls">
+      <button id="hit" class="action-button">Hit</button>
+      <button id="stand" class="action-button">Stand</button>
+      <button id="deal" class="action-button hide">Deal</button>
+    </div>
+</div>
+  <div id="start-screen" class="start-screen" style="background-image: url('intro.jpg');">
+    <h1 class="red-black-text">Welcome to Blackjack!</h1>
+    <div class="input-group">
+      <label for="username">Enter your name:</label>
+      <input type="text" id="username" maxlength="20">
+    </div>
+    <button id="start-game" class="action-button">Start Game</button>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>
