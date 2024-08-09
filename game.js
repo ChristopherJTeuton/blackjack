@@ -81,6 +81,11 @@ function updateHandValue(hand) {
 }
 
 function initGame() {
+  if (currentBet === 0) {
+    showMessage('Place a bet before dealing.');
+    return;
+  }
+
   createDeck();
   hands = {};
 
@@ -175,6 +180,7 @@ async function stand() {
   document.getElementById('place-bet').disabled = false;
   document.getElementById('bet-amount').disabled = false;
   updateMoneyDisplay();
+  currentBet = 0;
 }
 
 function showMessage(text) {
@@ -197,7 +203,7 @@ function startGame() {
 
 function placeBet() {
   const betAmount = parseInt(document.getElementById('bet-amount').value, 10);
-  if (betAmount >= 2 && betAmount <= playerMoney && betAmount % 2 === 0) {
+  if (betAmount >= 1 && betAmount <= playerMoney) {
     currentBet = betAmount;
     playerMoney -= currentBet;
     updateMoneyDisplay();
