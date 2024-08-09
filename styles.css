@@ -7,7 +7,8 @@ body {
   margin: 0;
   padding: 0;
   color: #fff; /* Set the default text color */
-  background: linear-gradient(to bottom, #000, #333); /* Set the background gradient */
+  background: url('background2.jpg') no-repeat center center fixed; /* Set the background image */
+  background-size: cover; /* Ensure the background image covers the screen */
 }
 
 .game {
@@ -16,7 +17,17 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #000; /* Set the game background color */
+  position: relative; /* Position relative for absolute positioning of child elements */
+  background-color: transparent; /* Set the game background color to transparent */
+}
+
+.game::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url('border.png'); /* Set the border image */
+  background-size: cover; /* Ensure the border image covers the game section */
+  z-index: -1; /* Place the border behind the game content */
 }
 
 .table {
@@ -34,10 +45,19 @@ body {
   flex-wrap: wrap; /* Allow cards to wrap within the hand */
 }
 
+.dealer .cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap; /* Prevent cards from wrapping to the next line */
+  width: auto; /* Allow the width to adjust based on the number of cards */
+}
+
 .dealer {
   top: 50px;
   left: 50%;
-  transform: translateX(-50%); /* Center the dealer's hand */
+  transform: translateX(-50%);
+  justify-content: center; /* Center the cards horizontally */
 }
 
 .player {
@@ -46,10 +66,12 @@ body {
 
 #player1 {
   left: 100px; /* Position NPC player 1's hand */
+  bottom: 150px; /* Position NPC player 1's hand above the player's hand */
 }
 
 #player2 {
   left: 300px; /* Position NPC player 2's hand */
+  bottom: 150px; /* Position NPC player 2's hand above the player's hand */
 }
 
 #player {
@@ -65,16 +87,20 @@ body {
 }
 
 .cards {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap; /* Allow cards to wrap within the hand */
+  display: grid;
+  grid-template-columns: repeat(2, 75px); /* Set the grid to have 2 columns of 75px each */
+  grid-auto-rows: 100px; /* Set the row height to 100px */
+  grid-gap: 5px; /* Add gap between cards */
+  justify-content: center; /* Center the cards horizontally */
+  width: 155px; /* Set the width of the card container to accommodate 2 cards and the gap */
 }
 
 .card {
   width: 75px;
   height: 100px;
-  margin: 5px;
+  margin: 0; /* Remove margin from the cards */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Add shadow to the cards */
+  transition: transform 0.2s ease; /* Add transition for card movement */
 }
 
 .card.face-down {
@@ -82,6 +108,26 @@ body {
   height: 100px;
   background-image: url('cards/green_back.png'); /* Set the background image for face-down cards */
   background-size: cover; /* Ensure the background image covers the card */
+}
+
+.hand.active .card {
+  animation: cardJiggle 0.5s infinite alternate; /* Add jiggle animation to active hand cards */
+}
+
+@keyframes cardJiggle {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.hand.active .card:hover {
+  transform: translateY(-10px); /* Move the card up slightly on hover */
 }
 
 .hand.active {
@@ -241,15 +287,15 @@ body {
   }
 
   .cards {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap; /* Allow cards to wrap within the hand */
+    grid-template-columns: repeat(2, 50px); /* Set the grid to have 2 columns of 50px each for smaller screens */
+    grid-auto-rows: 70px; /* Set the row height to 70px for smaller screens */
+    width: 105px; /* Set the width of the card container to accommodate 2 cards and the gap for smaller screens */
   }
 
   .card {
     width: 50px;
     height: 70px;
-    margin: 3px;
+    margin: 0; /* Remove margin from the cards */
   }
 
   .controls {
@@ -294,4 +340,21 @@ footer {
   padding: 10px; /* Add padding to the footer */
   color: #fff; /* Set the text color */
   font-size: 0.8rem; /* Set the font size */
+}
+
+/* Johnny CSSman here: Adding some easter eggs for players to find */
+.card:hover::after {
+  content: "🃏"; /* Display a card suit icon on hover */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover::after {
+  opacity: 1;
 }

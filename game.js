@@ -4,7 +4,8 @@ const cardBack = 'green_back.png';
 const greekNames = [
   'Alexander', 'Dimitri', 'Nikos', 'Georgios', 'Sophia', 'Elena', 'Maria', 'Athena',
   'Constantine', 'Theodore', 'Leonidas', 'Spiros', 'Helena', 'Penelope', 'Irene',
-  'Ariadne', 'Evangelos', 'Stavros', 'Katerina', 'Chloe'
+  'Artemis', 'Apollo', 'Nicholas', 'Nicky', 'Nick', 'Dmitri',
+  'Ariadne', 'Evangelos', 'Stavros', 'Katerina', 'Aemond', 'Aegon', 'Argon', 'Chloe'
 ];
 
 const players = [
@@ -13,6 +14,9 @@ const players = [
   { id: 'player2', name: '' },
   { id: 'player', name: '' },
 ];
+
+const shuffleSound = new Audio('shuffle.wav');
+const newCardSound = new Audio('newcard.mp3');
 
 let deck = [];
 let hands = {};
@@ -50,9 +54,10 @@ function dealCard(hand, faceDown = false) {
   }
   document.getElementById(`${hand.id}-cards`).appendChild(element);
   updateHandValue(hand);
+  newCardSound.play(); // Play new card sound when dealing a card
 }
 
-function calculateHandValue(hand) {
+function calculateHandValue(hand, considerFaceDown = false) {
   let value = 0;
   let aceCount = 0;
 
@@ -75,8 +80,8 @@ function calculateHandValue(hand) {
   return value;
 }
 
-function updateHandValue(hand) {
-  const value = calculateHandValue(hand);
+function updateHandValue(hand, considerFaceDown = false) {
+  const value = calculateHandValue(hand, considerFaceDown);
   document.getElementById(`${hand.id}-value`).innerText = `(${value})`;
 }
 
@@ -102,6 +107,8 @@ function initGame() {
     document.getElementById(`${player.id}-cards`).innerHTML = '';
     document.getElementById(`${player.id}-value`).innerText = '';
   }
+
+  shuffleSound.play(); // Play shuffle sound when dealing new hand
 
   for (const hand of Object.values(hands)) {
     dealCard(hand);
@@ -145,7 +152,7 @@ async function stand() {
   const faceDownCard = document.querySelector('#dealer-cards .face-down');
   faceDownCard.src = `cards/${faceDownCard.getAttribute('data-value')}${faceDownCard.getAttribute('data-suit')}.png`;
   faceDownCard.classList.remove('face-down');
-  updateHandValue(dealerHand);
+  updateHandValue(dealerHand, true);
 
   const playerValue = calculateHandValue(hands.player);
 
@@ -159,12 +166,12 @@ async function stand() {
     return;
   }
 
-  while (calculateHandValue(dealerHand) < 17) {
+  while (calculateHandValue(dealerHand, true) < 17) {
     dealCard(dealerHand);
     await new Promise(resolve => setTimeout(resolve, 500));
   }
 
-  const dealerValue = calculateHandValue(dealerHand);
+  const dealerValue = calculateHandValue(dealerHand, true);
 
   if (dealerValue > 21 || playerValue > dealerValue && playerValue <= 21) {
     playerMoney += currentBet * 2;
